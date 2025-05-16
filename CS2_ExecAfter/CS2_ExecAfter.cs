@@ -6,12 +6,12 @@ using System.Text;
 
 namespace CS2_ExecAfter
 {
-	[MinimumApiVersion(60)]
+	[MinimumApiVersion(200)]
 	public partial class CS2_ExecAfter : BasePlugin
 	{
 		public override string ModuleName => "CS2_ExecAfter";
-		public override string ModuleVersion => "1.0.0";
-		public override string ModuleAuthor => "Kus (https://github.com/kus)";
+		public override string ModuleVersion => "1.0.1";
+		public override string ModuleAuthor => "Kus (https://github.com/kus) / Mesharsky";
 		public override string ModuleDescription => "Executes a command after server event or a delay. exec_after for help";
 
 		public override void Load(bool hotReload)
@@ -36,10 +36,11 @@ namespace CS2_ExecAfter
 		[ConsoleCommand("exec_after", "List of commands for this plugin")]
 		public void ConVarExecAfter(CCSPlayerController? player, CommandInfo command)
 		{
-			StringBuilder stringBuilder = new StringBuilder();
+			StringBuilder stringBuilder = new();
 			stringBuilder.AppendLine(PluginInfo());
 			stringBuilder.AppendLine($"exec_after_map_start \"<command>\" - Executes a command after every map start");
 			stringBuilder.AppendLine($"exec_after_map_start_once \"<command>\" - Executes a command after the next map start");
+			stringBuilder.AppendLine($"exec_after_map_start_cooldown <seconds> - Sets cooldown to prevent duplicate executions (default: 5.0)");
 			stringBuilder.AppendLine($"exec_after_map_end \"<command>\" - Executes a command every time the map ends");
 			stringBuilder.AppendLine($"exec_after_map_end_once \"<command>\" - Executes a command when the map ends");
 			stringBuilder.AppendLine($"exec_after_round_start \"<command>\" - Executes a command after every round start");
@@ -47,6 +48,5 @@ namespace CS2_ExecAfter
 			stringBuilder.AppendLine($"exec_after_delay <delay> \"<command>\" - Execute a command after a delay");
 			ReplyToCommand(stringBuilder.ToString(), player);
 		}
-
 	}
 }

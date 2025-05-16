@@ -12,7 +12,7 @@ namespace CS2_ExecAfter
 				if (input.StartsWith("\"") && input.EndsWith("\""))
 				{
 					// Remove the first and last characters
-					return input.Substring(1, input.Length - 2);
+					return input[1..^1];
 				}
 			}
 
